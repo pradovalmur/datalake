@@ -15,7 +15,7 @@ class DataLakeStack(core.Stack):
         self.deploy_env = active_environment
         super().__init__(scope, id=f'{self.deploy_env.value}-data-lake', **kwargs)
 
-        self.data_lake_raw_bucket = BaseDatalakeBucket(
+        self.data_lake_raw_bucket = BaseDataLakeBucket(
             self,
             deploy_env=self.deploy_env,
             layer=DataLakelayer.RAW
@@ -35,13 +35,13 @@ class DataLakeStack(core.Stack):
             enabled=True
         )
 
-        self.data_lake_raw_bucket = BaseDatalakeBucket(
+        self.data_lake_raw_bucket = BaseDataLakeBucket(
             self,
             deploy_env=self.deploy_env,
             layer=DataLakelayer.PROCESSED
         )
 
-        self.data_lake_raw_bucket = BaseDatalakeBucket(
+        self.data_lake_raw_bucket = BaseDataLakeBucket(
             self,
             deploy_env=self.deploy_env,
             layer=DataLakelayer.CURATED
