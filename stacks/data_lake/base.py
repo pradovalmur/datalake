@@ -16,7 +16,6 @@ class DataLakelayer(Enum):
 class BaseDatalakeBucket(s3.Bucket):
 
     def __init__(self, scope: core.Construct, deploy_env: Environment, layer: DataLakelayer, **kwargs):
-        f's3-prado-{self.deploy_env.value}-data-lake{self.layer.value}'
         self.layer = layer
         self.Deploy_env = deploy_env
         self.obj_name = f's3-prado-{self.deploy_env.value}-data-lake{self.layer.value}'
