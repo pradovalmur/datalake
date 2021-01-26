@@ -15,7 +15,7 @@ class DataLakelayer(Enum):
 
 class BaseDatalakeBucket(s3.Bucket):
 
-    def __init__(self, scope: core.Contruct, deploy_env: Environment, layer: DataLakelayer, **kwargs):
+    def __init__(self, scope: core.Construct, deploy_env: Environment, layer: DataLakelayer, **kwargs):
         f's3-prado-{self.deploy_env.value}-data-lake{self.layer.value}'
         self.layer = layer
         self.Deploy_env = deploy_env
@@ -30,7 +30,7 @@ class BaseDatalakeBucket(s3.Bucket):
             versioned=True,
             **kwargs
         )
-        
+
         self.set_default_lifecycle_rules()
 
     @property
