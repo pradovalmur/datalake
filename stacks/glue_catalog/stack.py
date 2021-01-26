@@ -34,8 +34,8 @@ class GlueCatalogStack(core.Stack):
             schedule_expression="cron(0/15 * * * ? *)",
         )
 
-        self.atomic_events_crawler.node.add_dependency(self.database)
         self.atomic_events_crawler.node.add_dependency(self.role)
+        self.atomic_events_crawler.node.add_dependency(self.database)
 
         self.orders_table = OrdersTable(
             self, glue_database=self.database, glue_role=self.role
