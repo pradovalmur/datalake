@@ -5,12 +5,12 @@ from aws_cdk import (
 
 from stacks import active_environment
 from stacks.data_lake.base import (
-    BaseDatalakeBucket,
+    BaseDataLakeBucket,
     DataLakelayer
 )
 
 
-class DatalakeStack(core.Stack):
+class DataLakeStack(core.Stack):
     def __init__(self, scope: core.Construct, **kwargs) -> None:
         self.deploy_env = active_environment
         super().__init__(scope, id=f'{self.deploy_env.value}-data-lake', **kwargs)
