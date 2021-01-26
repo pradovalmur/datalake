@@ -13,7 +13,7 @@ class DataLakelayer(Enum):
     CURATED = 'curated'
 
 
-class BaseDatalakeBucket(s3.Bucket):
+class BaseDataLakeBucket(s3.Bucket):
 
     def __init__(self, scope: core.Construct, deploy_env: Environment, layer: DataLakelayer, **kwargs) -> None:
         self.layer = layer
