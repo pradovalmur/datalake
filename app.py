@@ -9,6 +9,6 @@ app = core.App()
 data_lake = DataLakeStack(app)
 glue_catalog = GlueCatalogStack(app, data_lake_bucket=data_lake.data_lake_raw_bucket)
 athena = AthenaStack(app)
-kinesis = KinesisStack(app, data_lake_bucket=data_lake.data_lake_raw_bucket)
+kinesis = KinesisStack(app, data_lake_bucket=data_lake.data_lake_raw_bucket, )
 
 app.synth()
