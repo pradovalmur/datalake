@@ -3,7 +3,8 @@ from aws_cdk import (
     aws_glue as glue,
     aws_iam as iam,
 )
-from stacks import Environment
+from stacks.environment import Environment
+from stacks.project import project
 from stacks.data_lake.base import BaseDataLakeBucket
 
 
@@ -13,11 +14,12 @@ class BaseDataLakeGlueDatabase(glue.Database):
     """
 
     def __init__(
-        self, scope: core.Construct, data_lake_bucket: BaseDataLakeBucket, **kwargs
+        self, scope: core.Construct, project: project,data_lake_bucket: BaseDataLakeBucket, **kwargs
     ) -> None:
+        self.project = project
         self.data_lake_bucket = data_lake_bucket
         self.deploy_env = self.data_lake_bucket.deploy_env
-        self.obj_name = f"glue-pradotesouro-{self.deploy_env.value}-data-lake-{self.data_lake_bucket.layer.value}"
+        self.obj_name = f"glue-{self.project.value}-{self.deploy_env.value}-data-lake-{self.data_lake_bucket.layer.value}"
 
         super().__init__(
             scope,

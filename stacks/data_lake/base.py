@@ -1,6 +1,7 @@
 from enum import Enum
 
 from stacks.environment import Environment
+from stacks.project import project
 from aws_cdk import core
 from aws_cdk import (
     aws_s3 as s3
@@ -15,10 +16,11 @@ class DataLakelayer(Enum):
 
 class BaseDataLakeBucket(s3.Bucket):
 
-    def __init__(self, scope: core.Construct, deploy_env: Environment, layer: DataLakelayer, **kwargs) -> None:
+    def __init__(self, scope: core.Construct, project: project, deploy_env: Environment, layer: DataLakelayer, **kwargs) -> None:
+        self.project = project
         self.layer = layer
         self.deploy_env = deploy_env
-        self.obj_name = f's3-pradotesouro-{self.deploy_env.value}-data-lake{self.layer.value}'
+        self.obj_name = f's3-{self.project.value}-{self.deploy_env.value}-data-lake{self.layer.value}'
 
         super().__init__(
             scope,
