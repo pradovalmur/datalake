@@ -17,7 +17,7 @@ class BaseDataLakeGlueDatabase(glue.Database):
     ) -> None:
         self.data_lake_bucket = data_lake_bucket
         self.deploy_env = self.data_lake_bucket.deploy_env
-        self.obj_name = f"glue-prado-{self.deploy_env.value}-data-lake-{self.data_lake_bucket.layer.value}"
+        self.obj_name = f"glue-pradotesouro-{self.deploy_env.value}-data-lake-{self.data_lake_bucket.layer.value}"
 
         super().__init__(
             scope,
