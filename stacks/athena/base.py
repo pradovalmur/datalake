@@ -4,15 +4,12 @@ from aws_cdk import (
     aws_athena as athena,
 )
 from stacks.environment import Environment
-from stacks.project import project
-
 
 class BaseAthenaBucket(s3.Bucket):
 
-    def __init__(self, scope: core.Construct, project: project, deploy_env: Environment, **kwargs) -> None:
-        self.project = project
+    def __init__(self, scope: core.Construct, deploy_env: Environment, **kwargs) -> None:
         self.deploy_env = deploy_env
-        self.obj_name = f's3-{self.project.value}-{self.deploy_env.value}-data-lake-athena-results'
+        self.obj_name = f's3-pradotesouro-{self.deploy_env.value}-data-lake-athena-results'
 
         super().__init__(
             scope,
