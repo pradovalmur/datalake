@@ -3,7 +3,7 @@ from aws_cdk import (
     aws_kinesisfirehose as firehose,
     aws_iam as iam,
 )
-from stacks import Environment
+from stacks import Environment, active_environment
 from data_lake.base import BaseDataLakeBucket
 
 
@@ -11,11 +11,10 @@ class RawKinesisRole(iam.Role):
     def __init__(
         self,
         scope: core.Construct,
-        deploy_env: Environment,
         data_lake_raw_bucket: BaseDataLakeBucket,
         **kwargs,
     ) -> None:
-        self.deploy_env = deploy_env
+        self.deploy_env = active_environment
         self.data_lake_raw_bucket = data_lake_raw_bucket
         super().__init__(
             scope,
